@@ -6,7 +6,7 @@ const Resolvers: Resolvers = {
     createAccount: async (
       _,
       { firstName, lastName, username, email, password },
-      { clinet }
+      { client }
     ) => {
       try {
         const existingUser = await client.user.findFirst({
