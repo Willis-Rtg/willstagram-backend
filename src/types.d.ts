@@ -3,7 +3,6 @@ import { PrismaClient, User } from ".prisma/client";
 type Context = {
   loggedInUser?: User;
   client: PrismaClient;
-  protectResolver: Resolvers;
 };
 
 export type Resolver = (

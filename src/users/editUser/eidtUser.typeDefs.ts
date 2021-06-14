@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-core";
 
 export default gql`
-  type editUserResult {
+  type MutationResponse {
     ok: Boolean!
     error: String
   }
@@ -14,6 +14,6 @@ export default gql`
       password: String
       bio: String
       avatar: Upload
-    ): editUserResult
+    ): MutationResponse
   }
 `;

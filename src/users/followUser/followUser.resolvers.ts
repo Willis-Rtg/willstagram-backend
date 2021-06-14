@@ -10,12 +10,29 @@ const Resolvers: Resolvers = {
             where: { username: toFollow },
           });
           if (!check) return { ok: false, error: "The user is not exist." };
+
+          // const followings = await client.user
+          //   .findUnique({ where: { id: loggedInUser.id } })
+          //   .following();
+          // const following = followings.find(
+          //   (following) => following.username === toFollow
+          // );
+          // if (following) {
+          //   await client.user.update({
+          //     where: { id: loggedInUser.id },
+          //     data: { following: { disconnect: { username: toFollow } } },
+          //   });
+          //   return { ok: true };
+          // }
+
           await client.user.update({
             where: { id: loggedInUser.id },
             data: { following: { connect: { username: toFollow } } },
           });
           return { ok: true };
-        } catch {}
+        } catch (error) {
+          console.log("🚀 ~followUser.resolvers.ts error", error);
+        }
       }
     ),
   },

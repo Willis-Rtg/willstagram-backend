@@ -10,9 +10,15 @@ export default gql`
     password: String
     bio: String
     avatar: String
+    photos(lastId: Int): [Photo]
     following: [User]
     followers: [User]
     createdAt: String
     updatedAt: String
+    totalFollowing: Int!
+    totalFollowers: Int!
+    isFollowing: Boolean!
+    isMe: Boolean!
+    isFollwoing: Boolean!
   }
 `;
