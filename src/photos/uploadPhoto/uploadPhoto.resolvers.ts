@@ -12,10 +12,6 @@ const Resolvers: Resolvers = {
           hashtagOgjs = processHashtag(caption);
         }
         const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
-        console.log(
-          "🚀 ~ file: uploadPhoto.resolvers.ts ~ line 15 ~ fileUrl",
-          fileUrl
-        );
         return client.photo.create({
           data: {
             file: fileUrl,

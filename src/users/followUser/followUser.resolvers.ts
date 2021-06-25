@@ -30,9 +30,7 @@ const Resolvers: Resolvers = {
             data: { following: { connect: { username: toFollow } } },
           });
           return { ok: true };
-        } catch (error) {
-          console.log("🚀 ~followUser.resolvers.ts error", error);
-        }
+        } catch (error) {}
       }
     ),
   },

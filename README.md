@@ -43,7 +43,8 @@
 
 ## DMs
 
-- [ ] Create Room
-- [ ] Get Room
-- [ ] Send Message
-- [ ] Realtime Messages
+- [x] See Room
+- [x] See Rooms
+- [x] Computed Fields
+- [x] Send Message (Create Room)
+- [x] Realtime Messages

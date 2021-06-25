@@ -21,7 +21,6 @@ const Resolvers: Resolvers = {
     totalPhotos: ({ id }, _, { client }) =>
       client.photo.count({ where: { hashtags: { some: { id } } } }),
     photos: ({ id }, { page }, { client }) => {
-      console.log("🚀 ~ file: photo.resolvers.ts ~ line 16 ~ args", page);
       return client.hashtag.findUnique({ where: { id } }).photos();
     },
   },
