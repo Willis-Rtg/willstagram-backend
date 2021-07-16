@@ -12,7 +12,7 @@ const Resolvers: Resolvers = {
           hashtagOgjs = processHashtag(caption);
         }
         const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
-        return client.photo.create({
+        return await client.photo.create({
           data: {
             file: fileUrl,
             caption,

@@ -1,10 +1,10 @@
 import client from "../../client";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-import { Resolvers, Resolver } from "../../types";
+import { Resolvers } from "../../types";
 
 const Resolvers: Resolvers = {
-  Query: {
+  Mutation: {
     login: async (_, { username, password }) => {
       const user = await client.user.findUnique({ where: { username } });
       if (!user) return { ok: false, error: "User not fount" };

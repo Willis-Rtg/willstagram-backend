@@ -8,13 +8,28 @@ const Resolvers: Resolvers = {
       client.hashtag.findMany({
         where: { photos: { some: { id } } },
       }),
-    likes: ({ id }, _, { client }) =>
+    likeCount: ({ id }, _, { client }) =>
       client.like.count({ where: { photoId: id } }),
+    likes: ({ id }, _, { client }) =>
+      client.like.findMany({ where: { photoId: id } }),
     comments: ({ id }, _, { client }) =>
-      client.comment.count({ where: { photo: { id } } }),
+      client.comment.findMany({ where: { photo: { id } } }),
     isMine: async ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) return false;
       return userId === loggedInUser.id;
+    },
+    isLiked: async ({ id }, _, { loggedInUser, client }) => {
+      if (!loggedInUser) return false;
+      const like = await client.like.findUnique({
+        where: {
+          photoId_userId: {
+            photoId: id,
+            userId: loggedInUser.id,
+          },
+        },
+      });
+      if (!like) return false;
+      return true;
     },
   },
   Hashtag: {
