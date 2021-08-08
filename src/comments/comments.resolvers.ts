@@ -2,9 +2,9 @@ import { Resolvers } from "../types";
 
 const CommentsResolvers: Resolvers = {
   Comment: {
-    isMine: ({ user }, _, { loggedInUser }) => {
+    isMine: ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) return false;
-      return user.id === loggedInUser.id;
+      return userId === loggedInUser.id;
     },
     user: ({ id }, _, { client }) =>
       client.comment.findUnique({ where: { id } }).user(),

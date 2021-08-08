@@ -5,6 +5,10 @@ const deleteCommentResolvers: Resolvers = {
   Mutation: {
     deleteComment: protectResolver(
       async (_, { commentId }, { client, loggedInUser }) => {
+        console.log(
+          "🚀 ~ file: deleteComment.resolvers.ts ~ line 8 ~ commentId",
+          commentId
+        );
         const comment = await client.comment.findUnique({
           where: { id: commentId },
           select: { userId: true },

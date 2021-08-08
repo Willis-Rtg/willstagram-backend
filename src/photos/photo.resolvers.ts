@@ -14,6 +14,8 @@ const Resolvers: Resolvers = {
       client.like.findMany({ where: { photoId: id } }),
     comments: ({ id }, _, { client }) =>
       client.comment.findMany({ where: { photo: { id } } }),
+    commentsCount: ({ id }, _, { client }) =>
+      client.comment.count({ where: { photo: { id } } }),
     isMine: async ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) return false;
       return userId === loggedInUser.id;

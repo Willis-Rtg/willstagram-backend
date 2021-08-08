@@ -47,7 +47,7 @@ model Hashtag {
   id        Int       @id @default(autoincrement())
   hashtag   String    @unique
   photos    Photo[]
-  Comment   Comment[]
+  Comments  Comment[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -68,7 +68,7 @@ model Comment {
   id        Int       @id @default(autoincrement())
   user      User      @relation(fields: [userId], references: [id])
   photo     Photo     @relation(fields: [photoId], references: [id])
-  hashtag   Hashtag[]
+  hashtags  Hashtag[]
   payload   String
   userId    Int
   photoId   Int

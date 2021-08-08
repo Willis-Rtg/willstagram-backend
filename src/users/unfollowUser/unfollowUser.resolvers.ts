@@ -7,6 +7,7 @@ const Resolvers: Resolvers = {
       async (_, { toUnfollow }, { client, loggedInUser }) => {
         const check = await client.user.findUnique({
           where: { username: toUnfollow },
+          select: { id: true },
         });
         if (!check)
           return { ok: false, error: "The username to unfollow isn't exist." };

@@ -6,7 +6,7 @@ const Resolvers: Resolvers = {
       client.user.count({ where: { followers: { some: { id } } } }),
     totalFollowers: ({ id }, _, { client }) =>
       client.user.count({ where: { following: { some: { id } } } }),
-    isMe: async ({ id }, _, { client, loggedInUser }) => {
+    isMe: async ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) return false;
       return id === loggedInUser.id;
     },
@@ -18,13 +18,11 @@ const Resolvers: Resolvers = {
       return Boolean(check);
     },
     photos: ({ id }, { lastId }, { client }) => {
-      return client.user
-        .findUnique({ where: { id } })
-        .photos({
-          skip: lastId ? 1 : 0,
-          take: 5,
-          ...(lastId && { cursor: { id: lastId } }),
-        });
+      return client.user.findUnique({ where: { id } }).photos({
+        skip: lastId ? 1 : 0,
+        take: 5,
+        ...(lastId && { cursor: { id: lastId } }),
+      });
     },
   },
 };
